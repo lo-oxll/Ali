@@ -1,8 +1,9 @@
 /**
- * Ali Kamil — personal site (ledger/dossier book edition)
+ * Ali Kamil — personal site (flipbook edition)
  *  - light/dark theme toggle (persisted)
- *  - opens/closes the front cover
- *  - flips each of the three inner spreads independently
+ *  - single-page flipbook: tap right half / swipe right-to-left = next,
+ *    tap left half / swipe left-to-right = previous
+ *  - arrow buttons + progress dots as an explicit fallback
  *  - loads projects.json into the "Projects" page
  *  - respects prefers-reduced-motion
  */
@@ -30,40 +31,111 @@
     });
   }
 
-  // ---- Cover open/close ----
-  var coverFront = document.getElementById('coverFront');
-  var closeBookBtn = document.getElementById('closeBook');
-  var wrapper = document.getElementById('wrapper');
-  var leaves = Array.prototype.slice.call(document.querySelectorAll('.leaf-flip'));
+  // ---- Flipbook ----
+  var book = document.getElementById('book');
+  var leaves = book ? Array.prototype.slice.call(book.querySelectorAll('.leaf')) : [];
+  var total = leaves.length;
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var progress = document.getElementById('progress');
+  var restartBtn = document.getElementById('restartBtn');
+  var turned = 0; // number of leaves currently flipped open (0..total-1)
 
-  function openCover() {
-    if (coverFront) coverFront.classList.add('turn');
-  }
-  function closeEverything() {
-    if (coverFront) coverFront.classList.remove('turn');
-    leaves.forEach(function (leaf) { leaf.classList.remove('turn'); });
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // stack leaves so leaf 0 sits on top, each following leaf underneath
+  leaves.forEach(function (leaf, i) {
+    leaf.style.zIndex = String(total - i);
+  });
+
+  // build progress dots
+  if (progress) {
+    for (var d = 0; d < total; d++) {
+      var dot = document.createElement('span');
+      progress.appendChild(dot);
+    }
   }
 
-  if (coverFront) {
-    coverFront.addEventListener('click', openCover);
-    coverFront.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openCover();
+  function render() {
+    leaves.forEach(function (leaf, i) {
+      leaf.classList.toggle('turned', i < turned);
+    });
+    if (progress) {
+      Array.prototype.forEach.call(progress.children, function (dot, i) {
+        dot.classList.toggle('is-active', i === turned);
+      });
+    }
+    if (prevBtn) prevBtn.disabled = turned === 0;
+    if (nextBtn) nextBtn.disabled = turned === total - 1;
+  }
+
+  function next() {
+    if (turned < total - 1) { turned++; render(); }
+  }
+  function prev() {
+    if (turned > 0) { turned--; render(); }
+  }
+  function restart() {
+    turned = 0;
+    render();
+  }
+
+  render();
+
+  if (nextBtn) nextBtn.addEventListener('click', function (e) { e.stopPropagation(); next(); });
+  if (prevBtn) prevBtn.addEventListener('click', function (e) { e.stopPropagation(); prev(); });
+  if (restartBtn) restartBtn.addEventListener('click', function (e) { e.stopPropagation(); restart(); });
+
+  // ---- Tap zones + swipe, unified via Pointer Events ----
+  if (book) {
+    var startX = 0, startY = 0, tracking = false, moved = false;
+
+    book.addEventListener('pointerdown', function (e) {
+      // ignore interactive elements inside the page content
+      if (e.target.closest('a, button, input, textarea, select')) return;
+      startX = e.clientX;
+      startY = e.clientY;
+      tracking = true;
+      moved = false;
+    });
+
+    book.addEventListener('pointermove', function (e) {
+      if (!tracking) return;
+      var dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+      if (Math.abs(dx) > 8 || Math.abs(dy) > 8) moved = true;
+    });
+
+    book.addEventListener('pointerup', function (e) {
+      if (!tracking) return;
+      tracking = false;
+      if (e.target.closest('a, button, input, textarea, select')) return;
+
+      var dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+      var horizontal = Math.abs(dx) > Math.abs(dy);
+
+      if (moved && horizontal && Math.abs(dx) > 40) {
+        // swipe: right-to-left (dx negative) advances, left-to-right goes back
+        if (dx < 0) next(); else prev();
+        return;
+      }
+
+      if (!moved) {
+        // simple tap: right half of the book = next, left half = previous
+        var rect = book.getBoundingClientRect();
+        var relX = e.clientX - rect.left;
+        if (relX > rect.width / 2) next(); else prev();
       }
     });
-  }
-  if (closeBookBtn) {
-    closeBookBtn.addEventListener('click', closeEverything);
+
+    book.addEventListener('pointercancel', function () { tracking = false; });
   }
 
-  // ---- Page turning ----
-  document.querySelectorAll('.page-nav').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var id = btn.getAttribute('data-target');
-      var leaf = document.getElementById(id);
-      if (leaf) leaf.classList.toggle('turn');
-    });
+  // ---- Keyboard support ----
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') next();
+    else if (e.key === 'ArrowRight') prev();
   });
 
   // ---- Projects: read the pre-built, ordered list from projects.json ----
