@@ -9,7 +9,7 @@
   <link rel="icon" href="favicon.jpeg" type="image/jpeg">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#151a1f">
+  <meta name="theme-color" content="#151f28">
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="علي كامل ياسين | Ali Kamil">
@@ -50,17 +50,22 @@
   }
   </script>
 
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <div class="wrapper">
     <div class="cover cover-back"></div>
-    <div class="cover cover-front" id="coverFront"></div>
+    <div class="cover cover-front" id="coverFront">
+      <div class="avatar-ring"><i class='bx bxs-user-badge'></i></div>
+      <h2>علي كامل ياسين</h2>
+      <span class="role">محاسب ومراقب مخزني</span>
+      <span class="hint"><i class='bx bx-arrow-back'></i> اضغط للفتح</span>
+    </div>
 
     <div class="book">
 
@@ -68,17 +73,17 @@
       <div class="book-page page-static">
         <div class="profile-page">
           <picture>
-            <source srcset="avatar-96.webp 96w, avatar-128.webp 128w, avatar-256.webp 256w" sizes="120px" type="image/webp">
-            <img srcset="avatar-96.jpeg 96w, avatar-128.jpeg 128w, avatar-256.jpeg 256w" sizes="120px" src="avatar-128.jpeg" alt="علي كامل ياسين" width="120" height="120" loading="eager">
+            <source srcset="avatar-96.webp 96w, avatar-128.webp 128w, avatar-256.webp 256w" sizes="150px" type="image/webp">
+            <img srcset="avatar-96.jpeg 96w, avatar-128.jpeg 128w, avatar-256.jpeg 256w" sizes="150px" src="avatar-256.jpeg" alt="علي كامل ياسين" width="150" height="150" loading="eager">
           </picture>
           <h1>علي كامل ياسين</h1>
           <h3>محاسب ومراقب مخزني</h3>
 
           <div class="social-media">
-            <a href="https://www.facebook.com/profile.php?id=100010347520733" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/lo_oxll" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/alikamilyaseen" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://github.com/lo-oxll" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100010347520733" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+            <a href="https://www.instagram.com/lo_oxll" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+            <a href="https://www.linkedin.com/in/alikamilyaseen" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
+            <a href="https://github.com/lo-oxll" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class='bx bxl-github'></i></a>
           </div>
 
           <p>
@@ -89,7 +94,7 @@
 
           <div class="btn-box">
             <a href="cv-ali-kamil-yaseen.pdf" download="Ali-Kamil-Yaseen-CV.pdf" class="btn">تحميل السيرة</a>
-            <a href="mailto:alikamilyaseen@gmail.com" class="btn contact-me">راسلني</a>
+            <a href="#" class="btn contact-me" id="contactMeBtn">راسلني</a>
           </div>
         </div>
       </div>
@@ -102,26 +107,26 @@
 
           <div class="workeduc-box">
             <div class="workeduc-content">
-              <span class="year"><i class="fa-solid fa-calendar-days"></i>يناير 2026 – الآن</span>
+              <span class="year"><i class='bx bxs-calendar'></i>يناير 2026 – الآن</span>
               <h3>محاسب ومراقب مخزني وحسابات</h3>
               <p>مطبعة شهداء الشرطة — وزارة الداخلية. إدارة حركة المخزون، الجرد الدوري، وأتمتة السجلات الورقية إلى تقارير رقمية.</p>
             </div>
 
             <div class="workeduc-content">
-              <span class="year"><i class="fa-solid fa-calendar-days"></i>حزيران 2021 – أكتوبر 2025</span>
+              <span class="year"><i class='bx bxs-calendar'></i>حزيران 2021 – أكتوبر 2025</span>
               <h3>فني شبكات ضوئية (FTTH)</h3>
               <p>تنفيذ وصيانة تمديدات الكابل الضوئي، تشخيص الأعطال الميدانية، والدعم الفني للبنى التحتية.</p>
             </div>
 
             <div class="workeduc-content">
-              <span class="year"><i class="fa-solid fa-calendar-days"></i>تموز 2020 – مايو 2021</span>
+              <span class="year"><i class='bx bxs-calendar'></i>تموز 2020 – مايو 2021</span>
               <h3>موظف مبيعات</h3>
               <p>محل ذهب برازيلي — إدارة عمليات البيع وضمان دقة الحسابات المالية اليومية.</p>
             </div>
           </div>
           <span class="number-page">١</span>
 
-          <span class="nextprev-btn" data-page="turn-1"><i class="fa-solid fa-chevron-left"></i></span>
+          <span class="nextprev-btn" data-page="turn-1"><i class='bx bx-chevron-left'></i></span>
         </div>
 
         <!-- page 2: education -->
@@ -130,13 +135,13 @@
 
           <div class="workeduc-box">
             <div class="workeduc-content">
-              <span class="year"><i class="fa-solid fa-calendar-days"></i>2023 – 2026</span>
+              <span class="year"><i class='bx bxs-calendar'></i>2023 – 2026</span>
               <h3>بكالوريوس إدارة تقنيات المعلومات</h3>
               <p>الكلية التقنية الإدارية — الجامعة التقنية الوسطى، بغداد.</p>
             </div>
 
             <div class="workeduc-content">
-              <span class="year"><i class="fa-solid fa-calendar-days"></i>2021 – 2023</span>
+              <span class="year"><i class='bx bxs-calendar'></i>2021 – 2023</span>
               <h3>دبلوم تقنيات الإحصاء</h3>
               <p>معهد الإدارة، الرصافة — الجامعة التقنية الوسطى، بغداد.</p>
             </div>
@@ -144,7 +149,7 @@
 
           <span class="number-page">٢</span>
 
-          <span class="nextprev-btn back" data-page="turn-1"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="nextprev-btn back" data-page="turn-1"><i class='bx bx-chevron-right'></i></span>
         </div>
       </div>
 
@@ -157,19 +162,19 @@
 
           <div class="services-box">
             <div class="services-content">
-              <i class="fa-solid fa-warehouse"></i>
+              <i class='bx bxs-package'></i>
               <h3>السيطرة المخزنية</h3>
               <p>إدارة الجرد، المطابقة الحسابية، وأتمتة السجلات المخزنية.</p>
             </div>
 
             <div class="services-content">
-              <i class="fa-solid fa-network-wired"></i>
+              <i class='bx bx-network-chart'></i>
               <h3>شبكات FTTH</h3>
               <p>تمديد وصيانة الألياف الضوئية وتشخيص الأعطال الميدانية.</p>
             </div>
 
             <div class="services-content">
-              <i class="fa-solid fa-code"></i>
+              <i class='bx bx-code-alt'></i>
               <h3>تطوير المواقع</h3>
               <p>بناء أنظمة إدارة مخازن وحسابات ومواقع ويب متكاملة.</p>
             </div>
@@ -177,7 +182,7 @@
 
           <span class="number-page">٣</span>
 
-          <span class="nextprev-btn" data-page="turn-2"><i class="fa-solid fa-chevron-left"></i></span>
+          <span class="nextprev-btn" data-page="turn-2"><i class='bx bx-chevron-left'></i></span>
         </div>
 
         <!-- page 4: skills -->
@@ -188,34 +193,34 @@
             <div class="skills-content">
               <h3>تقنية</h3>
               <div class="content">
-                <span><i class="fa-solid fa-database"></i>قواعد البيانات</span>
-                <span><i class="fa-solid fa-chart-line"></i>SPSS</span>
-                <span><i class="fa-solid fa-box-archive"></i>الأرشفة الرقمية</span>
-                <span><i class="fa-solid fa-file-excel"></i>Office</span>
+                <span><i class='bx bx-data'></i>قواعد البيانات</span>
+                <span><i class='bx bx-line-chart'></i>SPSS</span>
+                <span><i class='bx bx-archive'></i>الأرشفة</span>
+                <span><i class='bx bxs-file-doc'></i>Office</span>
               </div>
             </div>
 
             <div class="skills-content">
               <h3>إدارية</h3>
               <div class="content">
-                <span><i class="fa-solid fa-clipboard-check"></i>الرقابة المخزنية</span>
-                <span><i class="fa-solid fa-gears"></i>أتمتة العمليات</span>
-                <span><i class="fa-solid fa-coins"></i>الموازنات</span>
+                <span><i class='bx bx-task'></i>الرقابة المخزنية</span>
+                <span><i class='bx bx-cog'></i>أتمتة العمليات</span>
+                <span><i class='bx bx-coin-stack'></i>الموازنات</span>
               </div>
             </div>
 
             <div class="skills-content">
               <h3>ميدانية</h3>
               <div class="content">
-                <span><i class="fa-solid fa-ethernet"></i>FTTH</span>
-                <span><i class="fa-solid fa-video"></i>CCTV</span>
+                <span><i class='bx bx-git-branch'></i>FTTH</span>
+                <span><i class='bx bx-camera'></i>CCTV</span>
               </div>
             </div>
           </div>
 
           <span class="number-page">٤</span>
 
-          <span class="nextprev-btn back" data-page="turn-2"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="nextprev-btn back" data-page="turn-2"><i class='bx bx-chevron-right'></i></span>
         </div>
       </div>
 
@@ -229,7 +234,7 @@
             <div class="info-box">
               <div class="info-title">
                 <h3>Inventory Control Accountant</h3>
-                <a href="https://lo-oxll.github.io/Inventory_Control_Accountant_2/" target="_blank" rel="noopener noreferrer">معاينة مباشرة <i class="fa-solid fa-arrow-up-left-from-square"></i></a>
+                <a href="https://lo-oxll.github.io/Inventory_Control_Accountant_2/" target="_blank" rel="noopener noreferrer">معاينة مباشرة <i class='bx bx-link-external'></i></a>
               </div>
               <p>نظام إدارة مخازن وحسابات — Firebase</p>
               <p>مصادقة حقيقية، محاسبة بالمتوسط المرجّح، وسجل تدقيق غير قابل للحذف — النسخة الجاهزة للإنتاج من نظام السيطرة المخزنية.</p>
@@ -242,7 +247,7 @@
 
           <span class="number-page">٥</span>
 
-          <span class="nextprev-btn" data-page="turn-3"><i class="fa-solid fa-chevron-left"></i></span>
+          <span class="nextprev-btn" data-page="turn-3"><i class='bx bx-chevron-left'></i></span>
         </div>
 
 
@@ -251,21 +256,21 @@
           <h1 class="title">التواصل</h1>
 
           <div class="contact-box">
-            <a class="btn" href="mailto:alikamilyaseen@gmail.com"><i class="fa-solid fa-envelope"></i> E-mail</a>
-            <a class="btn" href="tel:+9647733456798"><i class="fa-solid fa-phone"></i> Phone</a>
-            <a class="btn" href="https://www.linkedin.com/in/alikamilyaseen" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-            <a class="btn" href="https://github.com/lo-oxll" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a class="btn" href="https://t.me/lo_oxll" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i> Telegram</a>
-            <a class="btn" href="https://discord.com/users/994903778153201676" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i> Discord</a>
+            <a class="btn" href="mailto:alikamilyaseen@gmail.com"><i class='bx bx-envelope'></i> E-mail</a>
+            <a class="btn" href="tel:+9647733456798"><i class='bx bx-phone'></i> Phone</a>
+            <a class="btn" href="https://www.linkedin.com/in/alikamilyaseen" target="_blank" rel="noopener noreferrer"><i class='bx bxl-linkedin-square'></i> LinkedIn</a>
+            <a class="btn" href="https://github.com/lo-oxll" target="_blank" rel="noopener noreferrer"><i class='bx bxl-github'></i> GitHub</a>
+            <a class="btn" href="https://t.me/lo_oxll" target="_blank" rel="noopener noreferrer"><i class='bx bxl-telegram'></i> Telegram</a>
+            <a class="btn" href="https://discord.com/users/994903778153201676" target="_blank" rel="noopener noreferrer"><i class='bx bxl-discord-alt'></i> Discord</a>
           </div>
 
           <span class="number-page">٦</span>
 
-          <span class="nextprev-btn back" data-page="turn-3"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="nextprev-btn back" data-page="turn-3"><i class='bx bx-chevron-right'></i></span>
 
           <button class="back-profile" id="backProfile" type="button">
             <p>الملف الشخصي</p>
-            <i class="fa-solid fa-user"></i>
+            <i class='bx bxs-user'></i>
           </button>
         </div>
 
