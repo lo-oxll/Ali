@@ -8,7 +8,7 @@
   'use strict';
 
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isMobileLayout = window.matchMedia('(max-width: 760px)').matches;
+  var isMobileLayout = window.matchMedia('(max-width: 880px)').matches;
 
   var coverFront = document.getElementById('coverFront');
   var spreads = Array.prototype.slice.call(document.querySelectorAll('.book-page.page-flip'));

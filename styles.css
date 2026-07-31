@@ -73,6 +73,8 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
 .cover-front {
   z-index: 100;
   transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -82,6 +84,7 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
   text-align: center;
   color: var(--white-color);
   padding: 2rem;
+  overflow: hidden;
 }
 .cover-front.turn { transform: rotateY(-180deg); }
 
@@ -89,9 +92,11 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
   width: 6rem; height: 6rem;
   border-radius: 50%;
   border: .2rem solid rgba(255, 255, 255, .55);
+  background: rgba(255, 255, 255, .08);
+  box-shadow: 0 0 0 .5rem rgba(255, 255, 255, .05), inset 0 0 1.2rem rgba(255, 255, 255, .08);
   display: flex; align-items: center; justify-content: center;
   font-size: 2.2rem;
-  margin-bottom: .3rem;
+  margin-bottom: .5rem;
 }
 .cover-front h2 { font-size: 1.7rem; font-weight: 700; }
 .cover-front span.role { font-size: .95rem; opacity: .85; }
@@ -119,11 +124,14 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
   box-shadow: 0 0 .6rem rgba(0, 0, 0, 0.1);
   display: flex;
   padding: 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .page-static {
   position: relative;
   right: 0;
+  min-height: 0;
   box-shadow: .6rem .6rem .6rem rgba(0, 0, 0, .1);
 }
 
@@ -189,7 +197,12 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
 .page-front { transform: rotateY(0deg) translateZ(0.5px); }
 .page-back { transform: rotateY(180deg) translateZ(0.5px); }
 
-.title { text-align: center; font-size: 1.4rem; font-weight: 700; color: var(--text-color); }
+.title { text-align: center; font-size: 1.4rem; font-weight: 700; color: var(--text-color); position: relative; padding-bottom: .7rem; margin-bottom: .3rem; }
+.title::after {
+  content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 2.6rem; height: .18rem; border-radius: 1rem;
+  background: linear-gradient(90deg, var(--main-color), var(--main-color-dark));
+}
 
 /* work / education timeline */
 .workeduc-box { border-inline-start: var(--border); margin-top: 1.8rem; }
@@ -197,7 +210,9 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
 .workeduc-box .workeduc-content::before {
   content: ''; position: absolute; top: 0; inset-inline-start: -.62rem;
   width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--main-color);
+  box-shadow: 0 0 0 4px rgba(0, 171, 240, 0.15);
 }
+.workeduc-box .workeduc-content:not(:last-child) { margin-bottom: .2rem; }
 .workeduc-content .year { color: var(--main-color); font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: .35rem; }
 .workeduc-content h3 { font-size: 1.05rem; margin: .3rem 0; color: var(--text-color); }
 .workeduc-content p { font-size: .84rem; line-height: 1.6; color: var(--second-text-color); }
@@ -215,11 +230,16 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
 
 /* specialties (services) */
 .services-box { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1.8rem; }
-.services-box .services-content { flex: 1 1 9rem; border: var(--border); border-radius: .5rem; padding: .9rem .6rem; text-align: center; transition: .3s ease; }
-.services-box .services-content:hover { box-shadow: var(--box-shadow); }
-.services-content i { font-size: 2.1rem; color: var(--main-color); }
-.services-content h3 { font-size: .95rem; margin: .4rem 0 .3rem; color: var(--text-color); }
-.services-content p { font-size: .78rem; line-height: 1.5; color: var(--second-text-color); }
+.services-box .services-content { flex: 1 1 9rem; border: var(--border); border-radius: .6rem; padding: 1.1rem .7rem; text-align: center; transition: .25s ease; background: rgba(0, 171, 240, 0.03); }
+.services-box .services-content:hover { box-shadow: var(--box-shadow); transform: translateY(-3px); background: rgba(0, 171, 240, 0.06); }
+.services-content i {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 3.1rem; height: 3.1rem; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 171, 240, 0.14), rgba(0, 171, 240, 0.05));
+  font-size: 1.5rem; color: var(--main-color); margin-bottom: .5rem;
+}
+.services-content h3 { font-size: .95rem; margin: .2rem 0 .35rem; color: var(--text-color); }
+.services-content p { font-size: .78rem; line-height: 1.55; color: var(--second-text-color); }
 
 /* skills */
 .skills-box { display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 1.8rem; }
@@ -231,7 +251,8 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
   padding: .55rem .75rem; border: var(--border); border-radius: .3rem;
   font-size: .76rem; font-weight: 700; color: var(--text-color); transition: .3s;
 }
-.skills-content .content span:hover { box-shadow: var(--box-shadow); }
+.skills-content .content span { background: rgba(0, 171, 240, 0.03); }
+.skills-content .content span:hover { box-shadow: var(--box-shadow); transform: translateY(-2px); background: rgba(0, 171, 240, 0.06); }
 .skills-content .content span i { color: var(--main-color); font-size: 1rem; }
 
 /* portfolio (latest project) */
@@ -246,8 +267,8 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
 
 /* contact */
 .contact-box { margin-top: 1.8rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; }
-.contact-box .btn { width: 100%; min-width: 0; background: transparent; color: var(--main-color); }
-.contact-box .btn:hover { background: var(--main-color); color: var(--white-color); }
+.contact-box .btn { width: 100%; min-width: 0; background: transparent; color: var(--main-color); transition: .25s ease; }
+.contact-box .btn:hover { background: var(--main-color); color: var(--white-color); transform: translateY(-2px); }
 
 .back-profile {
   position: absolute; bottom: 1.2rem; left: 2rem;
@@ -268,7 +289,7 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
    fit a phone, so it becomes a single scrollable
    page while keeping the exact same page order.
    ============================================ */
-@media (max-width: 760px) {
+@media (max-width: 880px) {
   body { padding: 1.2rem .7rem; }
   .wrapper { width: 100%; height: auto; perspective: none; padding: 0; }
 
