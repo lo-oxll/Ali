@@ -179,23 +179,19 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
   position: absolute;
   left: 0;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transform-origin: right;
-  transition: transform 1s cubic-bezier(.645, .045, .355, 1);
   padding: 0;
 }
-.book-page.page-flip.turn { transform: rotateY(180deg); }
 
 .page-front, .page-back {
   position: absolute;
   inset: 0;
   background: var(--pages-color);
   padding: 1.5rem 2rem;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   overflow-y: auto;
 }
-.page-front { transform: rotateY(0deg) translateZ(0.5px); }
-.page-back { transform: rotateY(180deg) translateZ(0.5px); }
+.page-back { display: none; }
 
 .title { text-align: center; font-size: 1.4rem; font-weight: 700; color: var(--text-color); position: relative; padding-bottom: .7rem; margin-bottom: .3rem; }
 .title::after {
@@ -301,7 +297,7 @@ button { font: inherit; background: none; cursor: pointer; color: inherit; }
   .book-page { position: relative; width: 100%; height: auto; margin-bottom: 1rem; border-radius: .4rem; }
   .page-static { box-shadow: none; }
 
-  .book-page.page-flip { transform: none !important; transition: none; }
-  .page-front, .page-back { position: relative; inset: auto; transform: none !important; margin-bottom: 1rem; border-radius: .4rem; }
+  .book-page.page-flip { transform: none !important; }
+  .page-front, .page-back { position: relative !important; inset: auto; transform: none !important; display: block !important; margin-bottom: 1rem; border-radius: .4rem; }
   .nextprev-btn, .back-profile { display: none; }
 }
